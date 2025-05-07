@@ -1,0 +1,22 @@
+{
+  "name": "vite-static-html",
+  "version": "1.0.0",
+  "description": "A basic static HTML project using Vite",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^5.2.133"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

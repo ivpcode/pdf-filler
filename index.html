@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite Static HTML</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mui/material@5.13.7/umd/material-ui.min.css" />
+    <style>
+    body {
+        display: flex;
+        height: 100vh;
+        margin: 0;
+        font-family: Roboto, sans-serif;
+    }
+    #left-panel {
+        width: 30%;
+        padding: 20px;
+        border-right: 1px solid #ccc;
+        box-sizing: border-box;
+        overflow-y: auto; /* Abilita lo scorrimento verticale */
+        height: 100%; /* Assicurati che il pannello sinistro occupi tutta l'altezza */
+    }
+    #right-panel {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f9f9f9;
+        height: 100%; /* Assicurati che il pannello destro occupi tutta l'altezza */
+    }
+    iframe {
+        width: 100%; /* Larghezza al 100% */
+        height: 100%; /* Altezza al 100% */
+        border: none;
+    }
+    #pdf-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Spaziatura tra i campi */
+    }
+    #pdf-form div {
+        display: flex;
+        flex-direction: column;
+    }
+    #pdf-form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    #pdf-form input {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    #pdf-form input:focus {
+        outline: none;
+        border-color: #007bff; /* Colore del bordo quando il campo è in focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+    </style>
+</head>
+<body>
+    <div id="left-panel">
+        <button id="myButton" onclick="window.fillPdfForm()">Compila PDF</button>
+
+        <h1>Modifica i campi</h1>
+        <form id="pdf-form">
+            <!-- I campi di input verranno generati dinamicamente qui -->
+        </form>
+    </div>
+    <div id="right-panel">
+        <iframe id="pdf-frame" src="/file.pdf" title="PDF Viewer"></iframe>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mui/material@5.13.7/umd/material-ui.production.min.js"></script>
+
+</body>
+</html>
