@@ -46,8 +46,14 @@ class PdfViewerComponent extends HTMLElement {
                 }
                 #pdf-form label {
                     font-weight: bold;
-                    margin-bottom: 5px;
+                    margin-bottom: 2px;
                 }
+                #pdf-form label.question-label {
+                    font-weight: 400;
+                    font-size: 14px;
+                    font-style: italic;
+                    margin-bottom: 5px;
+                }    
                 #pdf-form input {
                     padding: 8px;
                     font-size: 14px;
@@ -108,10 +114,17 @@ class PdfViewerComponent extends HTMLElement {
         const pdf_form = pdfDoc.getForm();
 
         Object.entries(this.form_data).forEach(([key, field]) => {
+
+            const value = field.value
+
             const label = document.createElement("label");
             label.textContent = key;
             label.setAttribute("for", key);
-            const value = field.value
+
+            const label_question = document.createElement("label");
+            label_question.textContent = field.question;
+            label_question.setAttribute("for", key);
+            label_question.classList.add("question-label");
 
             let type = value
             const pdf_field = pdf_form.getField(key);
@@ -152,7 +165,8 @@ class PdfViewerComponent extends HTMLElement {
             }
 
             const div = document.createElement("div");
-            div.appendChild(label);
+            //div.appendChild(label);
+            div.appendChild(label_question);            
             div.appendChild(input);
             form.appendChild(div);
         });
