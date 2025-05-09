@@ -14,71 +14,159 @@
         margin: 0;
         font-family: Roboto, sans-serif;
     }
-    #left-panel {
-        width: 30%;
-        padding: 20px;
-        border-right: 1px solid #ccc;
-        box-sizing: border-box;
-        overflow-y: auto; /* Abilita lo scorrimento verticale */
-        height: 100%; /* Assicurati che il pannello sinistro occupi tutta l'altezza */
-    }
-    #right-panel {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f9f9f9;
-        height: 100%; /* Assicurati che il pannello destro occupi tutta l'altezza */
-    }
-    iframe {
-        width: 100%; /* Larghezza al 100% */
-        height: 100%; /* Altezza al 100% */
-        border: none;
-    }
-    #pdf-form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px; /* Spaziatura tra i campi */
-    }
-    #pdf-form div {
-        display: flex;
-        flex-direction: column;
-    }
-    #pdf-form label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    #pdf-form input {
-        padding: 8px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    #pdf-form input:focus {
-        outline: none;
-        border-color: #007bff; /* Colore del bordo quando il campo è in focus */
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    pdf-viewer {
+        width: 100%;
     }
     </style>
+        <script type="module" src="./src/pdf-compiler-component.js"></script>
+
 </head>
 <body>
-    <div id="left-panel">
-        <button id="myButton" onclick="window.fillPdfForm()">Compila PDF</button>
+    
+    <pdf-viewer file_pdf="/file.pdf"></pdf-viewer>
 
-        <h1>Modifica i campi</h1>
-        <form id="pdf-form">
-            <!-- I campi di input verranno generati dinamicamente qui -->
-        </form>
-    </div>
-    <div id="right-panel">
-        <iframe id="pdf-frame" src="/file.pdf" title="PDF Viewer"></iframe>
-    </div>
 
-    <script type="module" src="./src/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mui/material@5.13.7/umd/material-ui.production.min.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let resp = {
+                success: true,
+                data: {
+                    ai: {
+                    id: 65,
+                    name: "Agevolazione IVA Condomini",
+                    compiling_parameters: {
+                        nome: {
+                        value: "Rudi Folla",
+                        question: "Qual è il nome del cliente richiedente?"
+                        },
+                        luogo_di_nascita: {
+                        value: "Palmanova",
+                        question: "Qual è il luogo di nascita del cliente richiedente?"
+                        },
+                        provincia_di_nascita: {
+                        value: "",
+                        question: "Qual è la provincia del luogo di nascita del cliente richiedente?"
+                        },
+                        data_di_nascita: {
+                        value: "27/09/2001",
+                        question: "Qual è la data di nascita del cliente richiedente?"
+                        },
+                        ruolo: {
+                        value: "",
+                        question: "Qual è il ruolo del cliente richiedente nella società?"
+                        },
+                        nome_societa: {
+                        value: "Azienda Fittizia",
+                        question: "Qual è il nome della società richiedente?"
+                        },
+                        sede_legale: {
+                        value: "Udine",
+                        question: "Qual è la città della sede legale della società richiedente?"
+                        },
+                        provincia_sede: {
+                        value: "UD",
+                        question: "Qual è la provincia della sede legale della società richiedente?"
+                        },
+                        indirizzo_sede: {
+                        value: "Via Roma, 1, 33100, Udine (UD)",
+                        question: "Qual è l'indirizzo della sede legale della società richiedente?"
+                        },
+                        numero_civico: {
+                        value: "1",
+                        question: "Qual è il numero civico della sede legale della società richiedente?"
+                        },
+                        cap: {
+                        value: "33100",
+                        question: "Qual è il CAP della sede legale della società richiedente?"
+                        },
+                        codice_fiscale_1: {
+                        value: "ABCDEF12G34H567I",
+                        question: "Qual è il codice fiscale della società richiedente?"
+                        },
+                        codice_ateco: {
+                        value: "62.01.00 (Produzione di software)",
+                        question: "Qual è il codice ATECO della società richiedente?"
+                        },
+                        numero_telefono: {
+                        value: "+39 0432 123456",
+                        question: "Qual è il numero di telefono del referente della società richiedente?"
+                        },
+                        numero_fax: {
+                        value: "+39 0432 654321",
+                        question: "Qual è il numero di fax della società richiedente?"
+                        },
+                        email: {
+                        value: "info@azienda-fittizia.com",
+                        question: "Qual è l'email della società richiedente?"
+                        },
+                        pec: {
+                        value: "azienda-fittizia@pec.it",
+                        question: "Qual è l'indirizzo PEC della società richiedente?"
+                        },
+                        numero_contratto: {
+                        value: "",
+                        question: "Qual è il numero di contratto?"
+                        },
+                        codice_fiscale_2: {
+                        value: "",
+                        question: "Qual è il codice fiscale dell'amministratore di condominio?"
+                        },
+                        codice_pod: {
+                        value: "",
+                        question: "Qual è il POD del condominio?"
+                        },
+                        numero_condomini: {
+                        value: "",
+                        question: "Quanti condomini sono inclusi nella presente dichiarazione?"
+                        },
+                        data: {
+                        value: "",
+                        question: "Qual è la data di sottoscrizione della richiesta?"
+                        },
+                        Testo2: {
+                        value: "IT12345678901",
+                        question: "Qual è la partita IVA della società richiedente?"
+                        },
+                        singolo_condominio: {
+                        value: "",
+                        question: "La dichiarazione è relativa a un singolo condominio?"
+                        },
+                        molti_condomini: {
+                        value: "",
+                        question: "La dichiarazione è relativa a più di un condominio?"
+                        }
+                    },
+                    file_to_compile: {
+                        name: "Agevolazione Iva Condomini",
+                        url: "http://127.0.0.1:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBYkU9IiwiZXhwIjoiMjAyNS0wNS0wOFQxNjozNjowNC43MDdaIiwicHVyIjoiYmxvYl9pZCJ9fQ==--ee8b62700aafb072f2059e28fa9376a69d6a1afc/AGEVOLAZIONE%20IVA%2010%EF%BF%BD%20CONDOMINI%20PARTI%20COMUNI%20aggiornamento%2017%20maggio%20compilabile.pdf"
+                    },
+                    files: [
+                        {
+                        id: 1,
+                        name: "Carta d'identità",
+                        uploaded: true,
+                        status: "completed"
+                        },
+                        {
+                        id: 2,
+                        name: "informazioni societarie",
+                        uploaded: true,
+                        status: "completed"
+                        }
+                    ]
+                    }
+                }
+            }
+
+            const pdfViewer = document.querySelector('pdf-viewer');
+            pdfViewer.setData({
+                form_data:resp.data.ai.compiling_parameters,
+                pdf_file: "/file.pdf"
+            });
+        });
+
+    </script>
 
 </body>
 </html>

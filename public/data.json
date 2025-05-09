@@ -1,0 +1,105 @@
+{
+    "compiling_parameters": {
+                "nome": {
+                    "value": "Rudi Folla",
+                    "question": "Qual è il nome del cliente richiedente?"
+                },
+                "luogo_di_nascita": {
+                    "value": "Palmanova",
+                    "question": "Qual è il luogo di nascita del cliente richiedente?"
+                },
+                "provincia_di_nascita": {
+                    "value": "",
+                    "question": "Qual è la provincia del luogo di nascita del cliente richiedente?"
+                },
+                "data_di_nascita": {
+                    "value": "27/09/2001",
+                    "question": "Qual è la data di nascita del cliente richiedente?"
+                },
+                "ruolo": {
+                    "value": "",
+                    "question": "Qual è il ruolo del cliente richiedente nella società?"
+                },
+                "nome_societa": {
+                    "value": "Azienda Fittizia",
+                    "question": "Qual è il nome della società richiedente?"
+                },
+                "sede_legale": {
+                    "value": "Udine",
+                    "question": "Qual è la città della sede legale della società richiedente?"
+                },
+                "provincia_sede": {
+                    "value": "UD",
+                    "question": "Qual è la provincia della sede legale della società richiedente?"
+                },
+                "indirizzo_sede": {
+                    "value": "Via Roma, 1, 33100, Udine (UD)",
+                    "question": "Qual è l'indirizzo della sede legale della società richiedente?"
+                },
+                "numero_civico": {
+                    "value": "1",
+                    "question": "Qual è il numero civico della sede legale della società richiedente?"
+                },
+                "cap": {
+                    "value": "33100",
+                    "question": "Qual è il CAP della sede legale della società richiedente?"
+                },
+                "codice_fiscale_1": {
+                    "value": "ABCDEF12G34H567I",
+                    "question": "Qual è il codice fiscale della società richiedente?"
+                },
+                "codice_ateco": {
+                    "value": "62.01.00 (Produzione di software)",
+                    "question": "Qual è il codice ATECO della società richiedente?"
+                },
+                "numero_telefono": {
+                    "value": "+39 0432 123456",
+                    "question": "Qual è il numero di telefono del referente della società richiedente?"
+                },
+                "numero_fax": {
+                    "value": "+39 0432 654321",
+                    "question": "Qual è il numero di fax della società richiedente?"
+                },
+                "email": {
+                    "value": "info@azienda-fittizia.com",
+                    "question": "Qual è l'email della società richiedente?"
+                },
+                "pec": {
+                    "value": "azienda-fittizia@pec.it",
+                    "question": "Qual è l'indirizzo PEC della società richiedente?"
+                },
+                "numero_contratto": {
+                    "value": "",
+                    "question": "Qual è il numero di contratto?"
+                },
+                "codice_fiscale_2": {
+                    "value": "",
+                    "question": "Qual è il codice fiscale dell'amministratore di condominio?"
+                },
+                "codice_pod": {
+                    "value": "",
+                    "question": "Qual è il POD del condominio?"
+                },
+                "numero_condomini": {
+                    "value": "",
+                    "question": "Quanti condomini sono inclusi nella presente dichiarazione?"
+                },
+                "data": {
+                    "value": "",
+                    "question": "Qual è la data di sottoscrizione della richiesta?"
+                },
+                "Testo2": {
+                    "value": "IT12345678901",
+                    "question": "Qual è la partita IVA della società richiedente?"
+                },
+                "singolo_condominio": {
+                    "value": "",
+                    "question": "La dichiarazione è relativa a un singolo condominio?"
+                },
+                "molti_condomini": {
+                    "value": "",
+                    "question": "La dichiarazione è relativa a più di un condominio?"
+                }
+            }}
+            
+        
