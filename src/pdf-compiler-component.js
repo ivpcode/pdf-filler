@@ -129,13 +129,6 @@ class PdfViewerComponent extends HTMLElement {
             let type = value
             const pdf_field = pdf_form.getField(key);
             console.log(pdf_field.constructor.name)
-            if (pdf_field.constructor.name === "PDFCheckBox" ||
-                pdf_field.constructor.name === "PDFCheckBox2"
-            ) {
-                type = true
-            } else {
-                type = "text"
-            }
 
             let input;
             if (typeof type === "boolean") {
@@ -185,7 +178,8 @@ class PdfViewerComponent extends HTMLElement {
                     const field = form.getField(fieldName);
                     console.log(`${fieldName}: ${value.value}`)
                     if (field.constructor.name === "PDFCheckBox" ||
-                        field.constructor.name === "PDFCheckBox2"
+                        field.constructor.name === "PDFCheckBox2" || 
+						typeof value.value === "boolean"
                     ) {
                         if (value.value) {
                             field.check();
