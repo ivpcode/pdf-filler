@@ -107,7 +107,7 @@ class PdfViewerComponent extends HTMLElement {
         const form = this.shadowRoot.getElementById("pdf-form");
         form.innerHTML = ""; // Pulisci il contenuto esistente
 
-        const response = await fetch("/file.pdf");
+        const response = await fetch(this.pdf_file);
         const pdfBytes = await response.arrayBuffer();
 
         const pdfDoc = await PDFDocument.load(pdfBytes);
@@ -174,7 +174,7 @@ class PdfViewerComponent extends HTMLElement {
 
     async fillPdfForm() {
         try {
-            const response = await fetch("/file.pdf");
+            const response = await fetch(this.pdf_file);
             const pdfBytes = await response.arrayBuffer();
 
             const pdfDoc = await PDFDocument.load(pdfBytes);
