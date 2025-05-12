@@ -68,7 +68,7 @@ class PdfViewerComponent extends HTMLElement {
                 }
             </style>
             <div id="left-panel">
-                <h1>Compilatore AI PDF</h1>
+                <h1 style="background: #f1f1f1;display: flex;padding: 20px;"><img src="/ai.gif" style="height:40px" /> Compilatore AI PDF</h1>
                 <form id="pdf-form"></form>
             </div>
             <div id="right-panel">
