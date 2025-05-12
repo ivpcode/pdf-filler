@@ -170,6 +170,10 @@
                 form_data: resp.data.ai.compiling_parameters,
                 pdf_file: pdfFile
             });
+
+            document.querySelectorAll('#pdf-form input').forEach((el) => {
+                el.value = resp.data.ai.compiling_parameters[el.name].value;
+            });
         });
 
     </script>

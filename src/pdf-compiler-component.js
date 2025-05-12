@@ -99,12 +99,11 @@ class PdfViewerComponent extends HTMLElement {
     async setData(data, fill) {
         this.form_data = data.form_data;
         this.pdf_file = data.pdf_file;
-        await this.generateFormFields();
-		if (fill == true)
-        	this.fillPdfForm();
+        await this.generateFormFields(fill);
+        this.fillPdfForm(fill);
     }
 
-    async generateFormFields() {
+    async generateFormFields(fill) {
         const form = this.shadowRoot.getElementById("pdf-form");
         form.innerHTML = ""; // Pulisci il contenuto esistente
 
@@ -113,6 +112,8 @@ class PdfViewerComponent extends HTMLElement {
 
         const pdfDoc = await PDFDocument.load(pdfBytes);
         const pdf_form = pdfDoc.getForm();
+
+        let fields = []
 
         Object.entries(this.form_data).forEach(([key, field]) => {
 
@@ -137,36 +138,62 @@ class PdfViewerComponent extends HTMLElement {
                 input.type = "checkbox";
                 input.id = key;
                 input.name = key;
-                input.checked = value;
+                fields.push({
+                    "input": input,
+                    "value": value
+                })
+                if (fill == true) {
+                    input.checked = value;
 
-                input.addEventListener("change", (e) => {
-                    this.form_data[key].value = e.target.checked;
-                    clearTimeout(this.debounceTimer);
-                    this.debounceTimer = setTimeout(() => this.fillPdfForm(), 1000);
-                });
+                    input.addEventListener("change", (e) => {
+                        this.form_data[key].value = e.target.checked;
+                        clearTimeout(this.debounceTimer);
+                        this.debounceTimer = setTimeout(() => this.fillPdfForm(), 1000);
+                    });
+                }
             } else {
                 input = document.createElement("input");
                 input.type = "text";
                 input.id = key;
                 input.name = key;
-                input.value = value;
+                fields.push({
+                    "input": input,
+                    "value": value
+                })
+                if (fill == true) {
+                    input.value = value;
 
-                input.addEventListener("input", (e) => {
-                    this.form_data[key].value = e.target.value;
-                    clearTimeout(this.debounceTimer);
-                    this.debounceTimer = setTimeout(() => this.fillPdfForm(), 1000);
-                });
+                    input.addEventListener("input", (e) => {
+                        this.form_data[key].value = e.target.value;
+                        clearTimeout(this.debounceTimer);
+                        this.debounceTimer = setTimeout(() => this.fillPdfForm(), 1000);
+                    });
+                }
             }
 
             const div = document.createElement("div");
             //div.appendChild(label);
             div.appendChild(label_question);            
             div.appendChild(input);
-            form.appendChild(div);
+            form.appendChild(div);            
         });
+
+        if (fill != true)  {
+            let  i= 0;
+            const fn = ()=>{
+                fields[i].input.value = fields[i].value;
+                i++
+                if (i < fields.length) 
+                    setTimeout(fn, 500)
+                else
+                    this.fillPdfForm(true);
+            }
+
+            fn()
+        }
     }
 
-    async fillPdfForm() {
+    async fillPdfForm(fill) {
         try {
             const response = await fetch(this.pdf_file);
             const pdfBytes = await response.arrayBuffer();
@@ -174,27 +201,28 @@ class PdfViewerComponent extends HTMLElement {
             const pdfDoc = await PDFDocument.load(pdfBytes);
             const form = pdfDoc.getForm();
 
-            Object.entries(this.form_data).forEach(([fieldName, value]) => {
-                try {
-                    const field = form.getField(fieldName);
-                    console.log(`${fieldName}: ${value.value}`)
-                    if (field.constructor.name === "PDFCheckBox" ||
-                        field.constructor.name === "PDFCheckBox2" || 
-						typeof value.value === "boolean"
-                    ) {
-                        if (value.value) {
-                            field.check();
+            if (fill == true){
+                Object.entries(this.form_data).forEach(([fieldName, value]) => {
+                    try {
+                        const field = form.getField(fieldName);
+                        console.log(`${fieldName}: ${value.value}`)
+                        if (field.constructor.name === "PDFCheckBox" ||
+                            field.constructor.name === "PDFCheckBox2" || 
+                            typeof value.value === "boolean"
+                        ) {
+                            if (value.value) {
+                                field.check();
+                            } else {
+                                field.uncheck();
+                            }
                         } else {
-                            field.uncheck();
+                            field.setText(value.value);
                         }
-                    } else {
-                        field.setText(value.value);
+                    } catch (error) {
+                        console.warn(`Campo non trovato o non gestito: ${fieldName}`);
                     }
-                } catch (error) {
-                    console.warn(`Campo non trovato o non gestito: ${fieldName}`);
-                }
-            });
-
+                });
+            }
             form.flatten();
 
             const filledPdfBytes = await pdfDoc.save();
