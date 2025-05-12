@@ -68,7 +68,7 @@ class PdfViewerComponent extends HTMLElement {
                 }
             </style>
             <div id="left-panel">
-                <h1>Modifica i campi</h1>
+                <h1>Compilatore AI PDF</h1>
                 <form id="pdf-form"></form>
             </div>
             <div id="right-panel">
@@ -189,7 +189,7 @@ class PdfViewerComponent extends HTMLElement {
                     this.fillPdfForm(true);
             }
 
-            fn()
+            setTimeout(fn, 1000)
         }
     }
 
