@@ -96,11 +96,12 @@ class PdfViewerComponent extends HTMLElement {
         }
     }
 
-    async setData(data) {
+    async setData(data, fill) {
         this.form_data = data.form_data;
         this.pdf_file = data.pdf_file;
         await this.generateFormFields();
-        this.fillPdfForm();
+		if (fill == true)
+        	this.fillPdfForm();
     }
 
     async generateFormFields() {
